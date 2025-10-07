@@ -428,6 +428,131 @@ body {
     font-size: 1.2em;
 }
 
+/* Dashboard designing */
+/* --- Dashboard Schedule List Styles --- */
+
+.schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between schedule items */
+}
+
+.schedule-item {
+    background: #ffffff; /* White background for the card */
+    border-radius: 12px;
+    padding: 15px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 5px solid transparent; /* To be updated based on status */
+    transition: all 0.2s ease-in-out;
+}
+
+/* Item Info (Name and Dosage) */
+.item-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.pill-name {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #333;
+}
+
+.pill-dosage {
+    font-size: 0.9em;
+    color: #6a6a6a;
+    margin-top: 2px;
+}
+
+/* Item Time */
+.item-time {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #1a73e8; /* Blue for the time */
+    min-width: 100px;
+    text-align: right;
+    margin-right: 20px;
+}
+
+/* Item Action (Buttons/Status) */
+.item-action {
+    display: flex;
+    gap: 8px;
+    min-width: 140px;
+    justify-content: flex-end;
+}
+
+.action-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.mark-taken {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+.mark-taken:hover {
+    background-color: #45a049;
+}
+
+.mark-missed {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+
+.mark-missed:hover {
+    background-color: #e53935;
+}
+
+
+/* --- Status-Specific Styling --- */
+
+/* DUE State (Needs Action) */
+.schedule-item.due {
+    border-left-color: #FF9800; /* Orange border */
+}
+
+/* TAKEN State */
+.schedule-item.taken {
+    background: #e8f5e9; /* Light green background */
+    border-left-color: #4CAF50; /* Green border */
+    opacity: 0.8; /* Slightly less prominent */
+}
+
+.schedule-item.taken .item-time span {
+    color: #4CAF50; /* Green checkmark time */
+}
+
+.schedule-item.taken .item-action {
+    color: #4CAF50;
+    font-weight: 600;
+}
+
+/* MISSED State */
+.schedule-item.missed {
+    background: #ffebee; /* Light red background */
+    border-left-color: #f44336; /* Red border */
+    opacity: 0.6; /* More subdued */
+}
+
+.schedule-item.missed .item-time span {
+    color: #f44336; /* Red X time */
+}
+
+.schedule-item.missed .item-action {
+    color: #f44336;
+    font-weight: 600;
+}
+
 /* Responsive */
 @media (max-width: 1200px) {
     .chart-box-large {
