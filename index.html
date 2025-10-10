@@ -10,8 +10,8 @@
     
     <!-- Chart.js Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
         <!-- Navbar -->
         <nav class="navbar">
@@ -25,142 +25,129 @@
                 <a href="#" class="nav-link" onclick="showProfile()">👤 Profile</a>
                 <a href="login.html" class="nav-link logout-btn">🚪 Logout</a>
             </div>
-        </nav>
-
-        <!-- Navigation Tabs -->
-        <nav class="tabs">
-            <button class="tab-btn active" onclick="showTab('add-medicine')">➕ Add Medicine</button>
-            <button class="tab-btn" onclick="showTab('dashboard')">📊 Dashboard</button>
-            <button class="tab-btn" onclick="showTab('history')">📋 History</button>
-            <button class="tab-btn" onclick="showTab('analytics')">📈 Analytics</button>
-        </nav>
-
-        <!-- Tab 1: Add Medicine Form -->
-        <section id="add-medicine" class="tab-content active">
-            <h2>Add New Medicine</h2>
-            <form id="medicine-form">
-                <div class="form-group">
-                    <label for="pill-name">Medicine Name:</label>
-                    <input type="text" id="pill-name" required placeholder="e.g., Aspirin">
-                </div>
-
-                <div class="form-group">
-                    <label for="dosage">Dosage:</label>
-                    <input type="text" id="dosage" required placeholder="e.g., 500mg">
-                </div>
-
-                <div class="form-group">
-                    <label for="time">Time:</label>
-                    <input type="time" id="time" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="frequency">Frequency:</label>
-                    <select id="frequency" required>
-                        <option value="daily">Daily</option>
-                        <option value="twice-daily">Twice Daily</option>
-                        <option value="three-times">Three Times Daily</option>
-                        <option value="weekly">Weekly</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="btn-primary">Add Medicine</button>
-            </form>
-        </section>
-
-        <!-- Tab 2: Dashboard -->
-        <section id="dashboard" class="tab-content">
-            <h2>Today's Schedule</h2>
-            <div id="today-schedule" class="schedule-list">
-                <!-- Medicines will be loaded here -->
+            <div class="item-action">
+              <button class="action-btn mark-taken" data-id="1">✅ Take</button>
+              <button class="action-btn mark-missed" data-id="1">Skip</button>
             </div>
+          </div>
 
-            <h2>All Medicines</h2>
-            <div id="all-medicines" class="medicine-list">
-                <!-- All medicines will be listed here -->
+          <div class="schedule-item taken">
+            <div class="item-info">
+              <span class="pill-name">Lisinopril</span>
+              <span class="pill-dosage">10mg</span>
             </div>
-        </section>
-
-        <!-- Tab 3: History -->
-        <section id="history" class="tab-content">
-            <h2>Medicine Log</h2>
-            <div class="filter-buttons">
-                <button onclick="filterHistory('all')" class="filter-btn active">All</button>
-                <button onclick="filterHistory('taken')" class="filter-btn">Taken</button>
-                <button onclick="filterHistory('missed')" class="filter-btn">Missed</button>
+            <div class="item-time">
+              <span>✅ 09:30 AM</span>
             </div>
-            <div id="history-log" class="history-list">
-                <!-- History will be shown here -->
+            <div class="item-action">
+              <span class="status-message">Taken</span>
             </div>
-        </section>
+          </div>
 
-        <!-- Tab 4: Enhanced Analytics -->
-        <section id="analytics" class="tab-content">
-            <h2>📈 Your Wellness Analytics</h2>
-            
-            <!-- Stats Cards -->
-            <div class="stats-cards">
-                <div class="stat-card stat-card-1">
-                    <div class="stat-icon">🎯</div>
-                    <h3>Adherence Rate</h3>
-                    <p class="stat-number" id="adherence-rate">0%</p>
-                    <p class="stat-description">Overall compliance</p>
-                </div>
-                <div class="stat-card stat-card-2">
-                    <div class="stat-icon">✅</div>
-                    <h3>Doses Taken</h3>
-                    <p class="stat-number" id="doses-taken">0</p>
-                    <p class="stat-description">Successfully completed</p>
-                </div>
-                <div class="stat-card stat-card-3">
-                    <div class="stat-icon">❌</div>
-                    <h3>Doses Missed</h3>
-                    <p class="stat-number" id="doses-missed">0</p>
-                    <p class="stat-description">Needs attention</p>
-                </div>
-                <div class="stat-card stat-card-4">
-                    <div class="stat-icon">💊</div>
-                    <h3>Active Medicines</h3>
-                    <p class="stat-number" id="active-medicines">0</p>
-                    <p class="stat-description">Currently tracking</p>
-                </div>
+          <div class="schedule-item missed">
+            <div class="item-info">
+              <span class="pill-name">Vitamin D</span>
+              <span class="pill-dosage">2000 IU</span>
             </div>
-
-            <!-- Charts Grid -->
-            <div class="charts-grid">
-                <!-- Pie Chart - Adherence Overview -->
-                <div class="chart-box">
-                    <h3>📊 Adherence Overview</h3>
-                    <canvas id="pieChart"></canvas>
-                </div>
-
-                <!-- Bar Chart - Weekly Trend -->
-                <div class="chart-box">
-                    <h3>📅 Weekly Adherence Trend</h3>
-                    <canvas id="barChart"></canvas>
-                </div>
-
-                <!-- Line Chart - Daily Progress -->
-                <div class="chart-box chart-box-large">
-                    <h3>📈 Daily Progress Over Time</h3>
-                    <canvas id="lineChart"></canvas>
-                </div>
-
-                <!-- Doughnut Chart - Medicine Distribution -->
-                <div class="chart-box">
-                    <h3>💊 Medicine Distribution</h3>
-                    <canvas id="doughnutChart"></canvas>
-                </div>
+            <div class="item-time">
+              <span>❌ 12:00 PM</span>
             </div>
-
-            <!-- Insights Section -->
-            <div class="insights-section">
-                <h3>💡 Health Insights</h3>
-                <div id="insights-list" class="insights-list">
-                    <!-- Insights will be generated here -->
-                </div>
+            <div class="item-action">
+              <span class="status-message">Missed</span>
             </div>
-        </section>
+          </div>
+        </div>
+
+        <h2 style="margin-top: 40px">All Medicines</h2>
+        <div id="all-medicines" class="medicine-list"></div>
+      </section>
+
+      <!-- Tab 3: History -->
+      <section id="history" class="tab-content">
+        <h2>Medicine Log</h2>
+        <div class="filter-buttons">
+          <button onclick="filterHistory('all')" class="filter-btn active">
+            All
+          </button>
+          <button onclick="filterHistory('taken')" class="filter-btn">
+            Taken
+          </button>
+          <button onclick="filterHistory('missed')" class="filter-btn">
+            Missed
+          </button>
+        </div>
+        <div id="history-log" class="history-list">
+          <!-- History will be shown here -->
+        </div>
+      </section>
+
+      <!-- Tab 4: Enhanced Analytics -->
+      <section id="analytics" class="tab-content">
+        <h2>📈 Your Wellness Analytics</h2>
+
+        <!-- Stats Cards -->
+        <div class="stats-cards">
+          <div class="stat-card stat-card-1">
+            <div class="stat-icon">🎯</div>
+            <h3>Adherence Rate</h3>
+            <p class="stat-number" id="adherence-rate">0%</p>
+            <p class="stat-description">Overall compliance</p>
+          </div>
+          <div class="stat-card stat-card-2">
+            <div class="stat-icon">✅</div>
+            <h3>Doses Taken</h3>
+            <p class="stat-number" id="doses-taken">0</p>
+            <p class="stat-description">Successfully completed</p>
+          </div>
+          <div class="stat-card stat-card-3">
+            <div class="stat-icon">❌</div>
+            <h3>Doses Missed</h3>
+            <p class="stat-number" id="doses-missed">0</p>
+            <p class="stat-description">Needs attention</p>
+          </div>
+          <div class="stat-card stat-card-4">
+            <div class="stat-icon">💊</div>
+            <h3>Active Medicines</h3>
+            <p class="stat-number" id="active-medicines">0</p>
+            <p class="stat-description">Currently tracking</p>
+          </div>
+        </div>
+
+        <!-- Charts Grid -->
+        <div class="charts-grid">
+          <!-- Pie Chart - Adherence Overview -->
+          <div class="chart-box">
+            <h3>📊 Adherence Overview</h3>
+            <canvas id="pieChart"></canvas>
+          </div>
+
+          <!-- Bar Chart - Weekly Trend -->
+          <div class="chart-box">
+            <h3>📅 Weekly Adherence Trend</h3>
+            <canvas id="barChart"></canvas>
+          </div>
+
+          <!-- Line Chart - Daily Progress -->
+          <div class="chart-box chart-box-large">
+            <h3>📈 Daily Progress Over Time</h3>
+            <canvas id="lineChart"></canvas>
+          </div>
+
+          <!-- Doughnut Chart - Medicine Distribution -->
+          <div class="chart-box">
+            <h3>💊 Medicine Distribution</h3>
+            <canvas id="doughnutChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Insights Section -->
+        <div class="insights-section">
+          <h3>💡 Health Insights</h3>
+          <div id="insights-list" class="insights-list">
+            <!-- Insights will be generated here -->
+          </div>
+        </div>
+      </section>
     </div>
 
     <!-- Chatbot Floating Button -->
@@ -234,5 +221,5 @@
 
     <!-- Link to JavaScript file -->
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
