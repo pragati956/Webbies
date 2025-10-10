@@ -3,24 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alchemist's Grimoire - Medicine Tracker</title>
+    <title>MediTech - Medicine Tracker</title>
     
     <!-- Link to CSS file -->
     <link rel="stylesheet" href="style.css">
     
-    <!-- Chart.js Library for Advanced Visualizations -->
+    <!-- Chart.js Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 </head>
 <body>
     <div class="container">
-        <!-- Better Navigation Bar -->
+        <!-- Navbar -->
         <nav class="navbar">
             <div class="nav-brand">
-                <h2>🧪 Alchemist's Grimoire</h2>
+                <h2>🧪 MediTech</h2>
             </div>
             <div class="nav-links">
                 <a href="home.html" class="nav-link">🏠 Home</a>
-                <a href="#" class="nav-link" id="user-name">👤 User</a>
+                <a href="#" class="nav-link" onclick="toggleReminders()">🔔 Reminders</a>
+                <a href="#" class="nav-link" onclick="toggleChatbot()">💬 AI Assistant</a>
+                <a href="#" class="nav-link" onclick="showProfile()">👤 Profile</a>
                 <a href="login.html" class="nav-link logout-btn">🚪 Logout</a>
             </div>
         </nav>
@@ -159,6 +161,75 @@
                 </div>
             </div>
         </section>
+    </div>
+
+    <!-- Chatbot Floating Button -->
+    <div class="chatbot-btn" onclick="toggleChatbot()">
+        <span>💬</span>
+    </div>
+
+    <!-- Chatbot Window - UPDATED -->
+    <div class="chatbot-window" id="chatbot-window">
+        <div class="chatbot-header">
+            <h3>🤖 MediBot Assistant</h3>
+            <button class="close-chat" onclick="event.stopPropagation(); toggleChatbot();">✕</button>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="message bot">
+                <div class="message-content">
+                    Hi! I'm MediBot 👋 How can I help you with your medicines today?
+                </div>
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" class="chat-input" id="chat-input" placeholder="Ask me anything..." onkeypress="handleChatKeypress(event)">
+            <button class="send-btn" onclick="sendMessage()">➤</button>
+        </div>
+    </div>
+
+    <!-- Reminders Popup -->
+    <div class="popup-overlay" id="reminders-popup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h3>🔔 Active Reminders</h3>
+                <button class="close-popup" onclick="toggleReminders()">✕</button>
+            </div>
+            <div class="popup-body" id="reminders-list">
+                <!-- Reminders will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Popup -->
+    <div class="popup-overlay" id="profile-popup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h3>👤 User Profile</h3>
+                <button class="close-popup" onclick="showProfile()">✕</button>
+            </div>
+            <div class="popup-body">
+                <div class="profile-info">
+                    <div class="profile-avatar">👤</div>
+                    <h2 id="user-name-display">User</h2>
+                    <p class="user-email">user@meditech.com</p>
+                </div>
+                <div class="profile-stats">
+                    <div class="profile-stat">
+                        <span class="stat-label">Member Since</span>
+                        <span class="stat-value">Jan 2025</span>
+                    </div>
+                    <div class="profile-stat">
+                        <span class="stat-label">Total Medicines</span>
+                        <span class="stat-value" id="profile-medicine-count">0</span>
+                    </div>
+                    <div class="profile-stat">
+                        <span class="stat-label">Streak Days</span>
+                        <span class="stat-value">15 🔥</span>
+                    </div>
+                </div>
+                <button class="btn-primary" onclick="editProfile()">Edit Profile</button>
+            </div>
+        </div>
     </div>
 
     <!-- Link to JavaScript file -->
